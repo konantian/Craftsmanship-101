@@ -44,11 +44,24 @@
 - Using **config files** is a huge improvement but still has weakness.
 - The twelve-factor app stores config in **environment variables**.
 - Env vars are easy to change between deploys without changing any code; unlike config files, there is little chance of them being checked into the code repo accidentally
-- 
 
 #### Backing Services
 
+- A backing service is any service the app consumes over the network as part of its normal operation.
+- Backing services like the database are traditionally managed by the same systems administrators who deploy the app’s runtime
+- The code for a twelve-factor app makes no distinction between local and third party services. 
+- Resources can be attached to and detached from deploys at will.
+
 #### Build, Release, Run
+
+**Codebase to Deployment in 3 steps**
+1. The build stage is a transform which converts a code repo into an executable bundle known as a build.
+2. The release stage takes the build produced by the build stage and combines it with the deploy’s current config.
+3. The run stage (also known as “runtime”) runs the app in the execution environment, by launching some set of the app’s processes against a selected release.
+
+- The twelve-factor app uses strict separation between the build, release, and run stages.
+- Deployment tools typically offer release management tools, most notably the ability to roll back to a previous release.
+- Every release should always have a unique release ID, such as a timestamp of the release.
 
 #### Processes
 
@@ -61,6 +74,5 @@
 #### Dev/prod parity
 
 #### Logs
-
 
 #### Admin Processes
