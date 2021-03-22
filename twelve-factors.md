@@ -71,7 +71,15 @@
 
 #### Port Binding
 
+- The twelve-factor app is completely **self-contained** and does not rely on runtime injection of a webserver into the execution environment to create a web-facing service. 
+- The web app **exports HTTP as a service by binding to a port**, and listening to requests coming in on that port.
+- Note also that the port-binding approach means that one app can become the **backing service** for another app.
+
 #### Concurrency
+
+- Any computer program, once run, is represented by one or more processes.
+- In the twelve-factor app, processes are a first class citizen
+- Twelve-factor app processes should never daemonize or write PID files.
 
 #### Disposability
 
