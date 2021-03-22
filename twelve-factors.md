@@ -9,10 +9,10 @@
 
 #### Code Base
 
-- A codebase is any single repo or any set of repositories who share a root commit.
+- A codebase is any single repo or any set of repositories who share a **root** commit.
 - There is only one codebase per app, but there will be many deploys of the app.
-- If there are multiple code bases, it’s not an app – it’s a distributed system.
-- A deploy is a running instance of the app. This is typically a production site, and one or more staging sites. 
+- If there are multiple code bases, it’s not an app – it’s a **distributed** system.
+- A deploy is a running **instance** of the app. This is typically a **production** site, and one or more **staging** sites. 
 
 #### Dependencies
 
@@ -47,23 +47,27 @@
 
 #### Backing Services
 
-- A backing service is any service the app consumes over the network as part of its normal operation.
-- Backing services like the database are traditionally managed by the same systems administrators who deploy the app’s runtime
+- A backing service is any service the app consumes over the **network** as part of its normal operation.
+- Backing services like the **database** are traditionally managed by the same systems administrators who deploy the app’s runtime
 - The code for a twelve-factor app makes no distinction between local and third party services. 
-- Resources can be attached to and detached from deploys at will.
+- Resources can be **attached** to and **detached** from deploys at will.
 
 #### Build, Release, Run
 
 **Codebase to Deployment in 3 steps**
 1. The build stage is a transform which converts a code repo into an executable bundle known as a build.
-2. The release stage takes the build produced by the build stage and combines it with the deploy’s current config.
+2. The release stage takes the build produced by the build stage and combines it with the current config of deploy.
 3. The run stage (also known as “runtime”) runs the app in the execution environment, by launching some set of the app’s processes against a selected release.
 
-- The twelve-factor app uses strict separation between the build, release, and run stages.
-- Deployment tools typically offer release management tools, most notably the ability to roll back to a previous release.
-- Every release should always have a unique release ID, such as a timestamp of the release.
+- The twelve-factor app uses **strict separation** between the build, release, and run stages.
+- Deployment tools typically offer release **management tools**, most notably the ability to **roll back** to a previous release.
+- Every release should always have a **unique** release ID, such as a timestamp of the release.
 
 #### Processes
+
+- Twelve-factor processes are **stateless** and **share-nothing**.
+- Any data that needs to persist must be stored in a **stateful backing service**, typically a database.
+- **Sticky sessions** are a violation of twelve-factor and should never be used or relied upon. 
 
 #### Port Binding
 
