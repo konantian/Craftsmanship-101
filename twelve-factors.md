@@ -96,12 +96,20 @@
 3. **The tools gap**: Developers may be using a stack like Nginx, SQLite, and OS X, while the production deploy uses Apache, MySQL, and Linux.
 
 - The twelve-factor app is designed for continuous deployment by keeping the gap between development and production small. 
-1. Make the time gap small: a developer may write code and have it deployed hours or even just minutes later.
-2. Make the personnel gap small: developers who wrote code are closely involved in deploying it and watching its behavior in production.
-3. Make the tools gap small: keep development and production as similar as possible.
+1. Make the **time gap small**: a developer may write code and have it deployed hours or even just minutes later.
+2. Make the **personnel gap small**: developers who wrote code are closely involved in deploying it and watching its behavior in production.
+3. Make the **tools gap small**: keep development and production as similar as possible.
 
 - The twelve-factor developer resists the urge to use different backing services between development and production, even when adapters theoretically abstract away any differences in backing services.
 
 #### Logs
 
+- Logs are the stream of aggregated, time-ordered events collected from the output streams of all running processes and backing services.
+- A twelve-factor app never concerns itself with routing or storage of its output stream. 
+- In staging or production deploys, each process’ stream will be captured by the execution environment, collated together with all other streams from the app, and routed to one or more final destinations for viewing and long-term archival. 
+
 #### Admin Processes
+
+- One-off admin processes should be run in an **identical environment** as the regular long-running processes of the app. 
+- The same **dependency isolation** techniques should be used on all process types. 
+- Twelve-factor strongly favors languages which provide a REPL shell out of the box, and which make it easy to run one-off scripts.
