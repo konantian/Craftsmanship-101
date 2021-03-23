@@ -78,12 +78,29 @@
 #### Concurrency
 
 - Any computer program, once run, is represented by one or more processes.
-- In the twelve-factor app, processes are a first class citizen
+- In the twelve-factor app, processes are a **first class citizen**.
 - Twelve-factor app processes should never daemonize or write PID files.
 
 #### Disposability
 
+- The twelve-factor app’s processes are **disposable**, meaning they can be started or stopped at a moment’s notice.
+- Processes should strive to **minimize** startup time. 
+- Processes shut down **gracefully** when they receive a SIGTERM signal from the process manager.
+- Processes should also be **robust** against sudden death, in the case of a failure in the underlying hardware.
+
 #### Dev/prod parity
+
+**Difference between local development and production**
+1. **The time gap**: A developer may work on code that takes days, weeks, or even months to go into production.
+2. **The personnel gap**: Developers write code, ops engineers deploy it.
+3. **The tools gap**: Developers may be using a stack like Nginx, SQLite, and OS X, while the production deploy uses Apache, MySQL, and Linux.
+
+- The twelve-factor app is designed for continuous deployment by keeping the gap between development and production small. 
+1. Make the time gap small: a developer may write code and have it deployed hours or even just minutes later.
+2. Make the personnel gap small: developers who wrote code are closely involved in deploying it and watching its behavior in production.
+3. Make the tools gap small: keep development and production as similar as possible.
+
+- The twelve-factor developer resists the urge to use different backing services between development and production, even when adapters theoretically abstract away any differences in backing services.
 
 #### Logs
 
