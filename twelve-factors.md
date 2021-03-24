@@ -25,13 +25,13 @@
 2. **requirements.txt** managed by pip which used to list all python libraries. 
 3. Gemfile managed by Bundler.
 
-- Furthermore, it uses a dependency isolation tool during execution to ensure that no implicit dependencies “leak in” from the surrounding system.
+- Furthermore, it uses a **dependency isolation** tool during execution to ensure that no implicit dependencies “leak in” from the surrounding system.
 
 **Examples**
 1. **Virtualenv** can be used to isolated all dependencies for a python program.
 2. Npm creates a special directory **"node_modules"** to achieve dependency isolation. 
 
-- No matter what the tool chain, dependency declaration and isolation must always be used together.
+- No matter what the tool chain, dependency declaration and isolation must always be **used together**.
 
 **Examples**
 1. **requirements.txt** and **virtualenv** are always used together.
@@ -55,9 +55,9 @@
 #### Build, Release, Run
 
 **Codebase to Deployment in 3 steps**
-1. The build stage is a transform which converts a code repo into an executable bundle known as a build.
-2. The release stage takes the build produced by the build stage and combines it with the current config of deploy.
-3. The run stage (also known as “runtime”) runs the app in the execution environment, by launching some set of the app’s processes against a selected release.
+1. The **build stage** is a **transform** which converts a code repo into an executable bundle known as a build.
+2. The **release stage** takes the build produced by the build stage and combines it with the current config of deploy.
+3. The **run stage** (also known as “runtime”) runs the app in the execution environment, by launching some set of the app’s processes against a selected release.
 
 - The twelve-factor app uses **strict separation** between the build, release, and run stages.
 - Deployment tools typically offer release **management tools**, most notably the ability to **roll back** to a previous release.
@@ -85,7 +85,7 @@
 
 - The twelve-factor app’s processes are **disposable**, meaning they can be started or stopped at a moment’s notice.
 - Processes should strive to **minimize** startup time. 
-- Processes shut down **gracefully** when they receive a SIGTERM signal from the process manager.
+- Processes shut down **gracefully** when they receive a **SIGTERM**(send termination signal to a process but allow the process to handle this signal on it's own way) signal from the process manager.
 - Processes should also be **robust** against sudden death, in the case of a failure in the underlying hardware.
 
 #### Dev/prod parity
@@ -95,7 +95,8 @@
 2. **The personnel gap**: Developers write code, ops engineers deploy it.
 3. **The tools gap**: Developers may be using a stack like Nginx, SQLite, and OS X, while the production deploy uses Apache, MySQL, and Linux.
 
-- The twelve-factor app is designed for continuous deployment by keeping the gap between development and production small. 
+- The twelve-factor app is designed for **continuous deployment** by keeping the gap between development and production **small**. 
+
 1. Make the **time gap small**: a developer may write code and have it deployed hours or even just minutes later.
 2. Make the **personnel gap small**: developers who wrote code are closely involved in deploying it and watching its behavior in production.
 3. Make the **tools gap small**: keep development and production as similar as possible.
@@ -104,12 +105,12 @@
 
 #### Logs
 
-- Logs are the stream of aggregated, time-ordered events collected from the output streams of all running processes and backing services.
+- Logs are the **stream** of aggregated, time-ordered events collected from the output streams of all **running processes** and **backing services**.
 - A twelve-factor app never concerns itself with routing or storage of its output stream. 
-- In staging or production deploys, each process’ stream will be captured by the execution environment, collated together with all other streams from the app, and routed to one or more final destinations for viewing and long-term archival. 
+- In staging or production deploys, each process’ stream will be captured by the **execution environment**, collated together with all other streams from the app, and routed to one or more final destinations for viewing and long-term archival. 
 
 #### Admin Processes
 
 - One-off admin processes should be run in an **identical environment** as the regular long-running processes of the app. 
 - The same **dependency isolation** techniques should be used on all process types. 
-- Twelve-factor strongly favors languages which provide a REPL shell out of the box, and which make it easy to run one-off scripts.
+- Twelve-factor strongly favors languages which provide a **REPL shell** out of the box, and which make it easy to run one-off scripts.
